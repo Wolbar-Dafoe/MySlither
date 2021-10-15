@@ -16,6 +16,8 @@ public final class Main {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
+
+        // Java 11+ fix 
         MySlitherJFrame window = new MySlitherJFrame();
         window.setVisible(true);
 

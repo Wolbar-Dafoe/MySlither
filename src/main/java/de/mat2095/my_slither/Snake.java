@@ -2,7 +2,9 @@ package de.mat2095.my_slither;
 
 import java.util.Deque;
 
-
+/** 
+ * This class appears to get and set data for the snake model
+ */
 class Snake {
 
     final int id;
@@ -15,6 +17,18 @@ class Snake {
     final Deque<SnakeBodyPart> body;
     private final MySlitherModel model;
 
+    /** 
+    * Following code is used to save inputs to local variables of the same name.
+    * @param name - Snake name
+    * @param x - X-coordinate of snake
+    * @param y - Y-coordinate of snake
+    * @param wang - ?? Double
+    * @param ang - Snake angle
+    * @param sp - ?? Double
+    * @param fam - ?? Double
+    * @param body - Snake Body Part
+    * @param model - snake model
+    */
     Snake(int id, String name, double x, double y, double wang, double ang, double sp, double fam, Deque<SnakeBodyPart> body, MySlitherModel model) {
         this.id = id;
         this.name = name;

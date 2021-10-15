@@ -8,13 +8,13 @@ import java.util.Map;
 class MySlitherModel {
 
     static final double PI2 = Math.PI * 2;
-
+    //TODO: Figure out what these do
     final int gameRadius;
     final int sectorSize;
     final double spangdv;
     final double nsp1, nsp2, nsp3;
     private final double mamu1, mamu2;
-    private final double cst; // TODO: usage?
+    private final double cst; // TODO: usage? (Original Dev)
     private final int mscps;
     private final double[] fpsls, fmlts;
 
@@ -28,7 +28,20 @@ class MySlitherModel {
     private final MySlitherJFrame view;
 
     Snake snake;
-
+    /**
+     *  Following code is used to save inputs to local variables of the same name.
+     * @param gameRadius
+     * @param sectorSize
+     * @param spangdv
+     * @param nsp1
+     * @param nsp2
+     * @param nsp3
+     * @param mamu1
+     * @param mamu2
+     * @param cst
+     * @param mscps
+     * @param view
+     */
     MySlitherModel(int gameRadius, int sectorSize, double spangdv, double nsp1, double nsp2, double nsp3, double mamu1, double mamu2, double cst, int mscps, MySlitherJFrame view) {
         this.gameRadius = gameRadius;
         this.sectorSize = sectorSize;
@@ -59,7 +72,10 @@ class MySlitherModel {
         bodyLength = Math.min(bodyLength, mscps);
         return (int) (15 * (fpsls[bodyLength] + fillAmount * fmlts[bodyLength]) - 20);
     }
-
+    /**
+     * Board update class.
+     * <p><b>NTS: May need to break down this function more 
+     */
     void update() {
         synchronized (view.modelLock) {
             long newTime = System.currentTimeMillis();
@@ -126,7 +142,7 @@ class MySlitherModel {
                 cSnake.y += Math.sin(cSnake.ang) * snakeDistance;
             });
 
-            // TODO: eahang
+            // TODO: eahang (Original Dev)
             double preyDeltaAngle = mamu2 * deltaTime;
             preys.values().forEach(prey -> {
                 double preyDistance = prey.sp * deltaTime / 4.0;
@@ -171,6 +187,18 @@ class MySlitherModel {
         }
     }
 
+    /**
+     * Adds snake to board of given id
+     * @param snakeID
+     * @param name
+     * @param x
+     * @param y
+     * @param wang
+     * @param ang
+     * @param sp
+     * @param fam
+     * @param body
+     */
     void addSnake(int snakeID, String name, double x, double y, double wang, double ang, double sp, double fam, Deque<SnakeBodyPart> body) {
         synchronized (view.modelLock) {
             Snake newSnake = new Snake(snakeID, name, x, y, wang, ang, sp, fam, body, this);
@@ -191,6 +219,17 @@ class MySlitherModel {
         }
     }
 
+    /**
+     * Adds A prey to the board of given id
+     * @param id
+     * @param x
+     * @param y
+     * @param radius
+     * @param dir
+     * @param wang
+     * @param ang
+     * @param sp
+     */
     void addPrey(int id, double x, double y, double radius, int dir, double wang, double ang, double sp) {
         synchronized (view.modelLock) {
             preys.put(id, new Prey(x, y, radius, dir, wang, ang, sp));
@@ -207,12 +246,24 @@ class MySlitherModel {
         }
     }
 
+    /**
+     * Adds food to the board
+     * @param x
+     * @param y
+     * @param size
+     * @param fastSpawn
+     */
     void addFood(int x, int y, double size, boolean fastSpawn) {
         synchronized (view.modelLock) {
             foods.put(y * gameRadius * 3 + x, new Food(x, y, size, fastSpawn));
         }
     }
 
+    /**
+     * Removes food from the board in given co-ords
+     * @param x
+     * @param y
+     */
     void removeFood(int x, int y) {
         synchronized (view.modelLock) {
             foods.remove(y * gameRadius * 3 + x);

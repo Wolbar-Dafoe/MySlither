@@ -16,6 +16,8 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+// Keep an eye on these imports they may not be required
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft_6455;
 import org.java_websocket.handshake.ServerHandshake;
