@@ -150,7 +150,7 @@ final class MySlitherJFrame extends JFrame {
         connect.addActionListener(a -> {
             switch (status) {
                 case DISCONNECTED:
-                    connect();
+                    connect(); //make snake instead
                     break;
                 case CONNECTING:
                 case CONNECTED:
