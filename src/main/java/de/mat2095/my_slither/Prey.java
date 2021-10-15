@@ -31,6 +31,10 @@ class Prey {
         this.spawnTime = System.currentTimeMillis();
     }
 
+    /**
+     * Calculates and returns the radius of prey
+     * @return Radius
+     */
     double getRadius() { // TODO: factor? (Original Dev)
         double fillRate = (System.currentTimeMillis() - spawnTime) / 1200.0;
         if (fillRate >= 1) {

@@ -6,11 +6,18 @@ import static de.mat2095.my_slither.MySlitherModel.PI2;
 abstract class Player {
 
     final String name;
-
+    /**
+     * 
+     * @param name
+     */
     Player(String name) {
         this.name = name;
     }
-
+    /**
+     * 
+     * @param model
+     * @return
+     */
     public abstract Wish action(MySlitherModel model);
 
     static class Wish {
