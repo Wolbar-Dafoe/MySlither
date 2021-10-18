@@ -44,6 +44,13 @@ final class MySlitherCanvas extends JPanel {
     private double fps;
     final ScheduledExecutorService repaintThread;
 
+    public int getZoom() {
+        return zoom;
+    }
+    public void setZoom(int _zoom)
+    {
+        zoom=_zoom;
+    }
     final MouseInput mouseInput = new MouseInput();
 
     class MouseInput extends Player {

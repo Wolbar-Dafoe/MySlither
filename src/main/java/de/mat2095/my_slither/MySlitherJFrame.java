@@ -97,6 +97,7 @@ final class MySlitherJFrame extends JFrame {
     private final JScrollBar logScrollBar;
     private final JTable highscoreList;
     private final MySlitherCanvas canvas;
+    private JButton zoomIn,zoomOut;
 
     private final long startTime;
     private final Timer updateTimer;
@@ -141,11 +142,18 @@ final class MySlitherJFrame extends JFrame {
         snake = new JComboBox<>(SNAKES);
         snake.setMaximumRowCount(snake.getItemCount());
 
+        zoomIn=new JButton();
+        zoomOut=new JButton();
+
+        zoomIn.setText("Zoom In");
+        zoomOut.setText("Zoom Out");
         useRandomServer = new JCheckBox("use random server", true);
         useRandomServer.addActionListener(a -> {
             setStatus(null);
         });
-
+        zoomIn.addActionListener(a -> {
+            canvas.setZoom(canvas.getZoom()+1);
+        });
         connect = new JToggleButton();
         connect.addActionListener(a -> {
             switch (status) {
@@ -206,7 +214,8 @@ final class MySlitherJFrame extends JFrame {
             new GridBagConstraints(4, 2, 1, 1, 0, 0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(2, 2, 2, 2), 0, 0));
         settings.add(rank,
             new GridBagConstraints(5, 2, 1, 1, 0, 0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(2, 2, 2, 2), 0, 0));
-
+        settings.add(zoomIn,
+            new GridBagConstraints(5,2,1,1,0,0,GridBagConstraints.EAST,GridBagConstraints.NONE,new Insets(2,2,2,2),0,0));
         JComponent upperRow = new JPanel(new FlowLayout(FlowLayout.LEFT));
         upperRow.add(settings);
         getContentPane().add(upperRow, BorderLayout.NORTH);
