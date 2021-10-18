@@ -11,11 +11,15 @@ public final class Main {
 
         // workaround to fix issue on linux: https://github.com/bulenkov/Darcula/issues/29
         UIManager.getFont("Label.font");
-        try {
+
+        // Commented out below code chunk to stop Darcula warnings
+       /* try {
             UIManager.setLookAndFeel("com.bulenkov.darcula.DarculaLaf");
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
             e.printStackTrace();
-        }
+        }*/
+
+        // Java 11+ fix 
         MySlitherJFrame window = new MySlitherJFrame();
         window.setVisible(true);
 
