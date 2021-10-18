@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 final class MySlitherJFrame extends JFrame {
 
-    private static final String[] SNAKES = {
+    private static final String[] SNAKES = { //TODO: Pick 5 colours and ensure snake colour is reflected in app
         "00 - purple",
         "01 - blue",
         "02 - cyan",

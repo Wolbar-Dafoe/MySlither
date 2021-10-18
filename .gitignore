@@ -3,3 +3,5 @@ build/
 
 .idea/
 *.iml
+.project
+.settings/org.eclipse.buildship.core.prefs
