@@ -71,31 +71,6 @@ final class MySlitherCanvas extends JPanel {
         super();
         this.view = view;
 
-        // Below Chnages Player colour given the JComboBox choice
-        int indexColor = view.getSnakeColour();
-        System.out.printf("IndexColor %d", indexColor);
-        //Purple
-        if (indexColor == 0)   {
-            OWN_SNAKE_BODY_COLOR = new Color(0xAB00FF);
-        }
-        //Blue
-        if (indexColor == 1)   {
-            OWN_SNAKE_BODY_COLOR = new Color(0x001AFF);
-        }
-        //Green
-        if (indexColor == 2)   {
-            OWN_SNAKE_BODY_COLOR = new Color(0x00FF22);
-        }
-        //Orange
-        if (indexColor == 3)   {
-            OWN_SNAKE_BODY_COLOR = new Color(0xFF7700);
-        }
-        //Red
-        if (indexColor == 4)   {
-            OWN_SNAKE_BODY_COLOR = new Color(0xFF1A00);
-        }
-        
-
         setBackground(BACKGROUND_COLOR);
         setForeground(FOREGROUND_COLOR);
 
@@ -264,6 +239,31 @@ final class MySlitherCanvas extends JPanel {
                         snake == model.snake ? OWN_SNAKE_HALO_COLORS : SNAKE_HALO_COLORS));
                     g.fillRect((int) Math.round(snake.x - thickness * 3 / 2 - 1), (int) Math.round(snake.y - thickness * 3 / 2 - 1), (int) (thickness * 3 + 2), (int) (thickness * 3 + 2));
                 }
+
+                // Below Chnages Player colour given the JComboBox choice
+                int indexColor = view.getSnakeColour();
+                //System.out.printf("IndexColor %d", indexColor);
+                //Purple
+                if (indexColor == 0)   {
+                    OWN_SNAKE_BODY_COLOR = new Color(0xAB00FF);
+                }
+                //Blue
+                if (indexColor == 1)   {
+                    OWN_SNAKE_BODY_COLOR = new Color(0x001AFF);
+                }
+                //Green
+                if (indexColor == 2)   {
+                    OWN_SNAKE_BODY_COLOR = new Color(0x00FF22);
+                }
+                //Orange
+                if (indexColor == 3)   {
+                    OWN_SNAKE_BODY_COLOR = new Color(0xFF7700);
+                }
+                //Red
+                if (indexColor == 4)   {
+                    OWN_SNAKE_BODY_COLOR = new Color(0xFF1A00);
+                }
+
                 g.setColor(snake == model.snake ? OWN_SNAKE_COLOR : SNAKE_COLOR);
                 g.fill(new Ellipse2D.Double(snake.x - thickness * 2 / 3, snake.y - thickness * 2 / 3, thickness * 4 / 3, thickness * 4 / 3));
 

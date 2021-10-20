@@ -2,6 +2,7 @@ package de.mat2095.my_slither;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.net.URI;
@@ -15,7 +16,7 @@ import javax.swing.event.AncestorListener;
 import javax.swing.table.DefaultTableCellRenderer;
 
 
-final class MySlitherJFrame extends JFrame {
+final class MySlitherJFrame extends JFrame  {
 
     private static final String[] SNAKES = { //TODO: Pick 5 colours and ensure snake colour is reflected in app
         "00 - purple",
@@ -80,7 +81,15 @@ final class MySlitherJFrame extends JFrame {
 
         snake = new JComboBox<>(SNAKES);
         snake.setMaximumRowCount(snake.getItemCount());
-        newColour = snake.getSelectedIndex(); // retrieves the index of the selected combo box
+        
+        // Below Code ensures that player snake colour can be changed 
+        ActionListener colourSelectListner = new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent){
+                newColour = snake.getSelectedIndex(); // retrieves the index of the selected combo box
+                System.out.printf("Index %d", newColour);
+            }
+        };
+        snake.addActionListener(colourSelectListner);
 
         useRandomServer = new JCheckBox("use random server", true);
         useRandomServer.addActionListener(a -> {
