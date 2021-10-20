@@ -26,7 +26,7 @@ final class MySlitherJFrame extends JFrame {
     };
 
     // TODO: skins, prey-size, snake-length/width, bot-layer, that-other-thing(?), show ping [OG DEV]
-
+    private int newColour;
     private final JTextField server, name;
     private final JComboBox<String> snake;
     private final JCheckBox useRandomServer;
@@ -80,6 +80,7 @@ final class MySlitherJFrame extends JFrame {
 
         snake = new JComboBox<>(SNAKES);
         snake.setMaximumRowCount(snake.getItemCount());
+        newColour = snake.getSelectedIndex(); // retrieves the index of the selected combo box
 
         useRandomServer = new JCheckBox("use random server", true);
         useRandomServer.addActionListener(a -> {
@@ -386,5 +387,9 @@ final class MySlitherJFrame extends JFrame {
             this.buttonEnabled = buttonEnabled;
             this.allowModifyData = allowModifyData;
         }
+    }
+
+    public int getSnakeColour() {
+        return newColour;
     }
 }
