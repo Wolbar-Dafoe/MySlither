@@ -90,8 +90,8 @@ final class MySlitherJFrame extends JFrame {
 
         snake = new JComboBox<>(SNAKES);
         snake.setMaximumRowCount(snake.getItemCount());
-        
-        // Below Code ensures that player snake colour can be changed 
+
+        // Below Code ensures that player snake colour can be changed
         ActionListener colourSelectListner = new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent){
                 newColour = snake.getSelectedIndex(); // retrieves the index of the selected combo box
@@ -104,6 +104,7 @@ final class MySlitherJFrame extends JFrame {
         useRandomServer.addActionListener(a -> {
             setStatus(null);
         });
+        //Below code sets the labels for zoom bar and give its functionality
         zoomBar.addChangeListener(a->{
             zoomBar.setMajorTickSpacing(5);
             zoomBar.setMinorTickSpacing(1);
