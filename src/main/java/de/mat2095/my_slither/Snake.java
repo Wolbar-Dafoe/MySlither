@@ -22,7 +22,7 @@ class Snake {
     * @param name - Snake name
     * @param x - X-coordinate of snake
     * @param y - Y-coordinate of snake
-    * @param wang - ?? Double
+    * @param wang - Mouse angle
     * @param ang - Snake angle
     * @param sp - ?? Double
     * @param fam - ?? Double
