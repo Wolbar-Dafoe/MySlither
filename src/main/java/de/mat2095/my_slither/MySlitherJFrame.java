@@ -13,10 +13,13 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.*;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.table.DefaultTableCellRenderer;
 
 
-final class MySlitherJFrame extends JFrame  {
+final class MySlitherJFrame extends JFrame {
+
 
     private static final String[] SNAKES = { //TODO: Pick 5 colours and ensure snake colour is reflected in app
         "00 - purple",
@@ -38,6 +41,12 @@ final class MySlitherJFrame extends JFrame  {
     private final JScrollBar logScrollBar;
     private final JTable highscoreList;
     private final MySlitherCanvas canvas;
+    private static final int ZOOM_MAXOUT=0;
+    private static final int ZOOM_MAXIN=20;
+    private static final int ZOOM_INIT=10;
+    JSlider zoomBar=new JSlider(JSlider.HORIZONTAL,ZOOM_MAXOUT,ZOOM_MAXIN,ZOOM_INIT);
+
+
 
     private final long startTime;
     private final Timer updateTimer;
@@ -95,7 +104,14 @@ final class MySlitherJFrame extends JFrame  {
         useRandomServer.addActionListener(a -> {
             setStatus(null);
         });
+        zoomBar.addChangeListener(a->{
+            zoomBar.setMajorTickSpacing(5);
+            zoomBar.setMinorTickSpacing(1);
+            zoomBar.setPaintTicks(true);
+            zoomBar.setPaintLabels(true);
+            canvas.setZoom(zoomBar.getValue());
 
+        });
         connect = new JToggleButton();
         connect.addActionListener(a -> {
             switch (status) {
@@ -156,6 +172,10 @@ final class MySlitherJFrame extends JFrame  {
             new GridBagConstraints(4, 2, 1, 1, 0, 0, GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(2, 2, 2, 2), 0, 0));
         settings.add(rank,
             new GridBagConstraints(5, 2, 1, 1, 0, 0, GridBagConstraints.WEST, GridBagConstraints.NONE, new Insets(2, 2, 2, 2), 0, 0));
+        settings.add(zoomBar,
+            new GridBagConstraints(5,2,1,1,0,0,GridBagConstraints.SOUTH,GridBagConstraints.NONE,new Insets(2,2,2,2),0,0));
+        settings.add(new JLabel("ZOOM BAR"),
+            new GridBagConstraints(5,1,1,1,0,0,GridBagConstraints.NORTH,GridBagConstraints.NONE,new Insets(2,2,2,2),0,0));
 
         JComponent upperRow = new JPanel(new FlowLayout(FlowLayout.LEFT));
         upperRow.add(settings);
