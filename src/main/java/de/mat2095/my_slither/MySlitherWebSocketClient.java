@@ -2,6 +2,7 @@ package de.mat2095.my_slither;
 
 import static de.mat2095.my_slither.MySlitherModel.PI2;
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,6 +41,7 @@ final class MySlitherWebSocketClient extends WebSocketClient {
     private boolean lastBoostContent;
     private boolean waitingForPong;
 
+    private String colors[] = {"fcba03","ff19fb","7bcf40","8161ff","ff0f47","ff8730","45e0ff","eb152a","1f9736"};
     static {
         HEADER.put("Origin", "http://slither.io");
         HEADER.put("Pragma", "no-cache");
@@ -98,7 +100,7 @@ final class MySlitherWebSocketClient extends WebSocketClient {
     }
 
     @Override
-    public void onMessage(ByteBuffer bytes) { // TODO: use first two bytes
+    public void onMessage(ByteBuffer bytes) { // TODO: use first two bytes (Original Dev)
         byte[] b = bytes.array();
         if (b.length < 3) {
             view.log("too short");
@@ -160,9 +162,13 @@ final class MySlitherWebSocketClient extends WebSocketClient {
                 processAddRemoveSnake(data);
                 break;
             case 'b':
+                processAddFood(data, false, true);
+            break;
             case 'f':
+                processAddFood(data, false, false);
+            break;
             case 'F':
-                processAddFood(data, cmd == 'F', cmd != 'f');
+                processAddFood(data, true, true);
                 break;
             case 'c':
                 processRemoveFood(data);
@@ -588,10 +594,11 @@ final class MySlitherWebSocketClient extends WebSocketClient {
             return;
         }
         for (int i = 8; i < data.length; i += 6) {
+            Color colour = new Color(Integer.parseInt(colors[data[i-5]],16));
             int x = (data[i - 4] << 8) | data[i - 3];
-            int z = (data[i - 2] << 8) | data[i - 1];
+            int y = (data[i - 2] << 8) | data[i - 1];
             double radius = data[i] / 5.0;
-            model.addFood(x, z, radius, fastSpawn); // TODO: now always...
+            model.addFood(x, y, radius, fastSpawn,colour); // TODO: now always... (Original Dev)
         }
     }
 

@@ -1,5 +1,6 @@
 package de.mat2095.my_slither;
 
+import java.awt.*;
 import java.util.Deque;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -74,7 +75,7 @@ class MySlitherModel {
     }
     /**
      * Board update class.
-     * <p><b>NTS: May need to break down this function more 
+     * <p><b>NTS: May need to break down this function more
      */
     void update() {
         synchronized (view.modelLock) {
@@ -252,10 +253,11 @@ class MySlitherModel {
      * @param y
      * @param size
      * @param fastSpawn
+     * @param colour
      */
-    void addFood(int x, int y, double size, boolean fastSpawn) {
+    void addFood(int x, int y, double size, boolean fastSpawn, Color colour) {
         synchronized (view.modelLock) {
-            foods.put(y * gameRadius * 3 + x, new Food(x, y, size, fastSpawn));
+            foods.put(y * gameRadius * 3 + x, new Food(x, y, size, fastSpawn,colour));
         }
     }
 
